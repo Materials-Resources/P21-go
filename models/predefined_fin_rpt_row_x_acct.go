@@ -1,0 +1,24 @@
+package models
+
+import (
+	"github.com/microsoft/go-mssqldb"
+	"github.com/uptrace/bun"
+)
+
+type PredefinedFinRptRowXAcct struct {
+	bun.BaseModel           `bun:"table:predefined_fin_rpt_row_x_acct"`
+	PredefFinRptRowXAcctUid int32 `bun:"predef_fin_rpt_row_x_acct_uid,type:int,autoincrement,identity,pk"` // Unique identifier of table (Identity Column)
+	StatementTypeCd         int32 `bun:"statement_type_cd,type:int"`                                       /*
+		Financial Statement which the records belongs (Balance Sheet,
+		Profit & Loss, etc...)
+	*/
+	SpreadsheetRowNo int32 `bun:"spreadsheet_row_no,type:int"` /*
+		Row of financial statement which the records are associated
+		with
+	*/
+	AccountNumber    string          `bun:"account_number,type:varchar(10)"`                              // Account Number
+	DateCreated      mssql.DateTime1 `bun:"date_created,type:datetime,default:(getdate())"`               // Date and time the record was originally created
+	CreatedBy        string          `bun:"created_by,type:varchar(255),default:(suser_sname())"`         // User who created the record
+	DateLastModified mssql.DateTime1 `bun:"date_last_modified,type:datetime,default:(getdate())"`         // Date and time the record was modified
+	LastMaintainedBy string          `bun:"last_maintained_by,type:varchar(255),default:(suser_sname())"` // User who last changed the record
+}
