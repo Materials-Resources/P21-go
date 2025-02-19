@@ -1,8 +1,8 @@
 package models
 
 import (
-	"github.com/microsoft/go-mssqldb"
 	"github.com/uptrace/bun"
+	"time"
 )
 
 type PredefinedFinRptRowXAcct struct {
@@ -16,9 +16,9 @@ type PredefinedFinRptRowXAcct struct {
 		Row of financial statement which the records are associated
 		with
 	*/
-	AccountNumber    string          `bun:"account_number,type:varchar(10)"`                              // Account Number
-	DateCreated      mssql.DateTime1 `bun:"date_created,type:datetime,default:(getdate())"`               // Date and time the record was originally created
-	CreatedBy        string          `bun:"created_by,type:varchar(255),default:(suser_sname())"`         // User who created the record
-	DateLastModified mssql.DateTime1 `bun:"date_last_modified,type:datetime,default:(getdate())"`         // Date and time the record was modified
-	LastMaintainedBy string          `bun:"last_maintained_by,type:varchar(255),default:(suser_sname())"` // User who last changed the record
+	AccountNumber    string    `bun:"account_number,type:varchar(10)"`                              // Account Number
+	DateCreated      time.Time `bun:"date_created,type:datetime,default:(getdate())"`               // Date and time the record was originally created
+	CreatedBy        string    `bun:"created_by,type:varchar(255),default:(suser_sname())"`         // User who created the record
+	DateLastModified time.Time `bun:"date_last_modified,type:datetime,default:(getdate())"`         // Date and time the record was modified
+	LastMaintainedBy string    `bun:"last_maintained_by,type:varchar(255),default:(suser_sname())"` // User who last changed the record
 }

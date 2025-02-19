@@ -1,12 +1,12 @@
 package models
 
 import (
-	"github.com/microsoft/go-mssqldb"
 	"github.com/uptrace/bun"
+	"time"
 )
 
 type P21Dblevel struct {
 	bun.BaseModel `bun:"table:p21_dblevel"`
-	Version       *int16          `bun:"version,type:tinyint"`
-	DateCreated   mssql.DateTime1 `bun:"date_created,type:datetime,default:(getdate())"`
+	Version       *int16    `bun:"version,type:tinyint"`
+	DateCreated   time.Time `bun:"date_created,type:datetime,default:(getdate())"`
 }
